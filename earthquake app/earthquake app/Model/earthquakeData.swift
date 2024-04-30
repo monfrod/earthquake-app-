@@ -19,31 +19,31 @@ struct EarthquakeFeature: Decodable {
 }
 
 struct EarthquakeProperties: Decodable {
-    let mag: Double
+    let mag: Double?
     let place: String
-    let time: Int
-    let updated: Int
+    let time: Double
+    let updated: Double
     let tz: String?
     let url: String
     let detail: String
-    let felt: Int?
-    let cdi: Int?
+    let felt: Double?
+    let cdi: Double?
     let mmi: Double?
     let alert: String?
     let status: String
-    let tsunami: Int
-    let sig: Int
+    let tsunami: Double
+    let sig: Double
     let net: String
     let code: String
     let ids: String
     let sources: String
-    let types: String
-    let nst: Int?
-    let dmin: Double
-    let rms: Double
-    let gap: Int
-    let magType: String
-    let title: String
+    let types: String?
+    let nst: Double?
+    let dmin: Double?
+    let rms: Double?
+    let gap: Double?
+    let magType: String?
+    let title: String?
 }
 
 struct Geometry: Decodable {
