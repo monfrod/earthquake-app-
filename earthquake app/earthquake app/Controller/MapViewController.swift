@@ -8,21 +8,17 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, EarthquakeManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let earthquakeManager = EarthquakeManager()
+        var earthquakeManager = EarthquakeManager()
+        earthquakeManager.delegate = self
+        earthquakeManager.fetchEartquake(/*completion: */)
 
-        earthquakeManager.fetchEartquake { response in
-            // Здесь вы можете обрабатывать данные из ответа
-            // Например, вы можете напечатать информацию о первом землетрясении в массиве features:
-            if let firstEarthquake = response.features.first {
-                print("Магнитуда: \(firstEarthquake.properties.mag)")
-                print("Место: \(firstEarthquake.properties.place)")
-                print("Время: \(firstEarthquake.properties.time)")
-            }
-        }
     }
-
+    func didUpdateEarthquake(earthquake: EarthquakeResponse?) {
+        print(earthquake?.features.first?.properties.mag)
+    }
 }
+

@@ -8,17 +8,21 @@
 import Foundation
 import UIKit
 
+protocol EarthquakeManagerDelegate {
+    func didUpdateEarthquake(earthquake: EarthquakeResponse?)
+}
 
 struct EarthquakeManager {
     
     typealias CompletionHandler = (EarthquakeResponse) -> Void
+    var delegate: EarthquakeManagerDelegate?
     let api = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
     
-    func fetchEartquake(completion: @escaping CompletionHandler){
+    func fetchEartquake(/*completion: @escaping CompletionHandler*/){
         let urlString = api
-        performRequest(urlString: api, completion: completion)
+        performRequest(urlString: api/*, completion: completion*/)
     }
-    func performRequest(urlString: String, completion: @escaping CompletionHandler){
+    func performRequest(urlString: String/*, completion: @escaping CompletionHandler*/){
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -27,15 +31,22 @@ struct EarthquakeManager {
                     return
                 }
                 if let safeData = data{
-                    do {
-                    let decoderData = try JSONDecoder().decode(EarthquakeResponse.self, from: safeData)
-                    completion(decoderData)
-                        } catch {
-                            print(error)
-                        }
+                    if let earthquake = self.parseJSON(earthquakeData: safeData){
+                        self.delegate?.didUpdateEarthquake(earthquake: earthquake)
+                    }
                 }
             }
             task.resume()
+        }
+    }
+    func parseJSON(earthquakeData: Data) -> EarthquakeResponse?{
+        let decoder = JSONDecoder()
+        do {
+            let decoderData = try decoder.decode(EarthquakeResponse.self, from: earthquakeData)
+            return decoderData
+        } catch {
+            print(error)
+            return nil
         }
     }
 }
