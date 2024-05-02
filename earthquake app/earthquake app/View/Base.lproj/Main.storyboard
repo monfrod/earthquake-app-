@@ -45,13 +45,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="allCell" rowHeight="121" id="tMR-vK-rdD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="allCell" rowHeight="121" id="tMR-vK-rdD" customClass="AllTableViewCell" customModule="earthquake_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tMR-vK-rdD" id="Xvw-IJ-m1b">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="121"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ut-HH-swP">
+                                                    <rect key="frame" x="20" y="11" width="274" height="68"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="274" id="41Q-ch-WFZ"/>
+                                                        <constraint firstAttribute="height" constant="68" id="M67-oK-iis"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0Ut-HH-swP" secondAttribute="trailing" constant="79" id="2xj-0i-jxT"/>
+                                                <constraint firstItem="0Ut-HH-swP" firstAttribute="top" secondItem="Xvw-IJ-m1b" secondAttribute="topMargin" id="Jda-Vh-K8i"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="0Ut-HH-swP" secondAttribute="bottom" constant="31" id="c4p-u1-4ys"/>
+                                                <constraint firstItem="0Ut-HH-swP" firstAttribute="leading" secondItem="Xvw-IJ-m1b" secondAttribute="leadingMargin" id="n59-fo-sxG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="0Ut-HH-swP" id="xRE-9X-qwI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -60,6 +81,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="All" id="aNv-el-8rC"/>
+                    <connections>
+                        <outlet property="tableView" destination="qtn-9n-FrA" id="6zf-MW-9wD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efe-vm-PRJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,6 +95,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="O7D-Xq-tnl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RFC-uD-saD">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
