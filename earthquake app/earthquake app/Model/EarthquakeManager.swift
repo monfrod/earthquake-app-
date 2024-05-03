@@ -18,11 +18,10 @@ struct EarthquakeManager {
     var delegate: EarthquakeManagerDelegate?
     let api = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
     
-    func fetchEartquake(/*completion: @escaping CompletionHandler*/){
-        let urlString = api
-        performRequest(urlString: api/*, completion: completion*/)
+    func fetchEartquake(){
+        performRequest(urlString: api)
     }
-    func performRequest(urlString: String/*, completion: @escaping CompletionHandler*/){
+    func performRequest(urlString: String){
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
